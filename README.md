@@ -17,6 +17,13 @@ maven:
 </dependency>
 ```
 
+spring:
+```xml
+<aop:aspectj-autoproxy proxy-target-class="true"/>
+
+<context:component-scan base-package="com.blackshadowwalker.spring.access"/>
+```
+
 ## 1. 使用方法1
 
 基于入参控制访问频率。

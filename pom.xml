@@ -155,7 +155,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <!--
             <plugin>
                 <groupId>pl.project13.maven</groupId>
                 <artifactId>git-commit-id-plugin</artifactId>
@@ -174,9 +173,8 @@
                     <dateFormat>yyyy-dd-MM'T'HH:mm:ss z</dateFormat>
                     <dateFormatTimeZone>${user.timezone}</dateFormatTimeZone>
                     <verbose>true</verbose>
-                    <generateGitPropertiesFile>false</generateGitPropertiesFile>
-                    <generateGitPropertiesFilename>${project.basedir}/src/main/resources/git.properties
-                    </generateGitPropertiesFilename>
+                    <generateGitPropertiesFile>true</generateGitPropertiesFile>
+                    <!--<generateGitPropertiesFilename>${project.basedir}/src/main/resources/git.properties</generateGitPropertiesFilename>-->
                     <format>properties</format>
                     <skipPoms>true</skipPoms>
                     <injectAllReactorProjects>false</injectAllReactorProjects>
@@ -189,7 +187,6 @@
                     <commitIdGenerationMode>flat</commitIdGenerationMode>
                 </configuration>
             </plugin>
-            -->
         </plugins>
     </build>
 

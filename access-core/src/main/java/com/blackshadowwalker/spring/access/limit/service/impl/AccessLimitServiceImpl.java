@@ -43,7 +43,7 @@ public class AccessLimitServiceImpl implements AccessLimitService {
     @Value("${access.limit.prefix}")
     private String accessLimitKeyPrefix;
 
-    private String accessHitLimitCache = "HitCache";//命中后的结果缓存，不用每次都计算了
+    private String accessHitLimitCache = "HitCache:";//命中后的结果缓存，不用每次都计算了
 
     @Override
     public List<AccessLimitOperation> parseLimit(Object target, Method method, Object[] args) {
@@ -62,7 +62,7 @@ public class AccessLimitServiceImpl implements AccessLimitService {
                 continue;
             }
             //命中访问控制缓存检查
-            String hitLimitKey = accessHitLimitCache + op.getValue() + ":" + op.getKey();
+            String hitLimitKey = accessLimitKeyPrefix + accessHitLimitCache + op.getValue() + ":" + op.getKey();
             if (op.getDelayExpireOnHit() && redis.hasKey(hitLimitKey)) {
                 Long ttl = redis.getExpire(hitLimitKey);
                 ttl = op.getDelayExpireStep() + ((ttl == null || ttl < 0) ? 1 : ttl);
@@ -156,7 +156,7 @@ public class AccessLimitServiceImpl implements AccessLimitService {
         for (AccessLimit item : limitList) {
             EvaluationContext evaluationContext = evaluator.createEvaluationContext(new ArrayList<AccessLimitOperation>(), target, targetClass, method, args);
             String limitKey = String.valueOf(evaluator.key(item.key(), new AnnotatedElementKey(method, targetClass), evaluationContext));
-            AccessLimitOperation op = new AccessLimitOperation(item.value(), limitKey, item.limit(), item.unitTime(), item.errorMsg());
+            AccessLimitOperation op = new AccessLimitOperation(item.value(), limitKey, item.limit(), item.unitTime(), item.errorMsg(), item.delayExpireOnHit(), item.delayExpireStep());
             list.add(op);
         }
         return list;

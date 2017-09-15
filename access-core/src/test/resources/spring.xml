@@ -26,7 +26,9 @@
         </property>
     </bean>
 
-    <context:component-scan base-package="com.blackshadowwalker"/>
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+
+    <context:component-scan base-package="com.blackshadowwalker.spring.access"/>
 
     <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig" >
         <property name="maxTotal" value="500" />
@@ -40,8 +42,6 @@
         <property name="usePool" value="true"/>
         <property name="database" value="${redis.database}"/>
     </bean>
-
-    <aop:aspectj-autoproxy proxy-target-class="false"/>
 
     <bean id="keySerializer" class="org.springframework.data.redis.serializer.StringRedisSerializer"/>
 
