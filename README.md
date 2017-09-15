@@ -1,6 +1,6 @@
 # Access Limit
 
-![Version](https://img.shields.io/badge/Version-1.0_SNAPSHOT-blue.svg)
+![Version](https://img.shields.io/badge/Version-1.0.0-blue.svg)
 
 ![jdk    ](https://img.shields.io/badge/Jdk-1.7+-blue.svg)
 
