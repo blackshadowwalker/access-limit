@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+
+    <property name="logPrefix" value="testcase" />
+    <property name="logSuffix" value=".gz" />
+
+    <property name="log_dir" value="/opt/data/logs/" />
+
+    <property name="logFormat"  value="%d{HH:mm:ss.SSS, Asia/Shanghai} [%-5level] [%thread] [%C{15}\\(%F:%L\\)] %msg%n"/>
+    <property name="dailyDateFormat" value="%d{yyyy-MM-dd}"/>
+    <property name="prudent" value="false" />
+
+    <timestamp key="byDay" datePattern="yyyy-MM-dd"/>
+    <timestamp key="byMinute" datePattern="yyyy-MM-dd'T'HHmm"/>
+    <timestamp key="bySecond" datePattern="yyyyMMdd'T'HHmmss"/>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>DEBUG</level>
+        </filter>
+        <encoder>
+            <pattern>${logFormat}</pattern>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT" />
+    </root>
+
+</configuration>
