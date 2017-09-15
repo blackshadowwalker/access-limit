@@ -26,6 +26,7 @@
         <target.version>1.7</target.version>
         <encoding>UTF-8</encoding>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <release.version>1.0.0</release.version>
     </properties>
 
     <developers>
